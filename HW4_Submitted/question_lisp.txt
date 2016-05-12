@@ -1,0 +1,67 @@
+
+1 - what is the difference between; why do they give different output
+    (cons 'a (cons 'b nil))
+    (cons 'a 'b)
+    
+    
+2 - what does #' does
+    if i have 
+    (defun myfun(fxn listx)
+      myfun(mapcar #'fxn listx); NOTE: DOESN"T work? need to remove for it to run. it says fxn is undefined
+    
+    
+    
+3 - (format t "Length = ~D" (append (list 1 2 3) (cons 3 nil))) produces 
+    //Length = (1 2 3 3)
+    (format t "Length = ~D" (append (list 1 2 3) (cons (list 3) nil))) produces 
+    Length = (1 2 3 (3))
+    
+    --? why would there be any difference.
+        // ans: could be due to an extra nil being added to the list with 3 as the only element.
+
+
+4-- how come 
+    (append '(1 3 4) list(nil)) 
+    doesn't create 
+    (1 2 3 (nil)) but rather creates (1 2 3 nil)
+    
+    how come the following obtains the desired paranthesis.
+    (append '(1 3 4) (list (list 3))))
+    
+    
+5 -- how come the following returns true 
+      (format t "Answer = ~D"  (eql (car '( ? 1 2)) '?))
+    but the following doen't
+    (format t "Answer = ~D"  (eql (car (list ? 1 2)) '?))
+
+
+6-- difference between (car (list 1 2 3)) and (car '(1 2 3))
+
+
+7 -- Difference between the following because they have different output.
+      (print (list '' 1))
+      (print (list 'quote 1))
+      (print (list (quote 1)))
+
+
+
+
+NOTE
+
+
+0 - (boundp x) tests if x is bound to anything such as a list etc. x must be a "string"
+  (boundp nil) or (boundp t) always return T.
+   -- (makeunbound x) undo the above
+   
+1 - there is append function
+2 - max1 function returns the max, I think.
+3 - (format t "Answer = ~D"  (list 'quote (car (list 1 2 4)))) 
+         - the first ' create a quote in the list, second term is evaluate regularly
+          - (' 1) generated. now since this is a function that lisp can evaluate, lisp
+              evalute this to '1
+        -IF - we rather had (list 'quote 3 (car (list 1 2 4)))
+           - 3 total arguments, then this will not happen.
+           
+4 - if statement in clisp can only take one statement as then and one as else clause.           
+5 - in lisp when using (setq u x) 
+       x needs to be a variable with a value or it needs to be a string (i.e. 'x or 3 etc)
